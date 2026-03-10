@@ -9,6 +9,9 @@ public class Song{
 		this.duration = duration;
 
 		}	
+	public String getname(){
+		return name;
+	}	
 	public void display(){
 		System.out.println("\n"+name + " -- " + artist + " -- " + duration + " sec\n");
 		

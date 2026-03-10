@@ -154,6 +154,19 @@ public class Musicplayer{
 		
 		
 	}
+	public String searchm(String s){
+		if(head == null) return null;
+		Node temp = head;
+		while(temp != null){
+			if(temp.song.getname().equals(s)){
+				return temp.song.getname();
+			}else{
+				temp = temp.next;
+			}
+		}
+		return null;
+	}
+	
 	
 	public static void main(String args[]){
 		Musicplayer player1 = new Musicplayer();
@@ -174,6 +187,7 @@ public class Musicplayer{
 		player1.playCurrent();
 		player1.shuffle();
 		player1.playCurrent();
+		System.out.println("Song Found:\n" + player1.searchm("Believer")+"\n");
 
 		
 			}
