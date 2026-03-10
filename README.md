@@ -13,6 +13,7 @@ A simple console-based music player implemented using a **Doubly Linked List** i
 - Move to next / previous song
 - Remove current song
 - Display playlist
+- Shuffle songs
 
 ## Files
 Musicplayer.java → Core playlist logic using a doubly linked list  
