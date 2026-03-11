@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 public class Musicplayer{
 	private Node head;
 	private Node tail;
@@ -47,7 +48,6 @@ public class Musicplayer{
 		Node temp = head;
 		while(temp != null){
 			temp.song.display();
-			System.out.print(" <-> ");
 			temp = temp.next;
 			}
 		System.out.print("(Add more!)\n");
@@ -154,24 +154,90 @@ public class Musicplayer{
 		
 		
 	}
-	public String searchm(String s){
-		if(head == null) return null;
+	//Search Function
+
+	public String searchSong(String s){
+		if(head == null) return "Playlist Empty!";
 		Node temp = head;
 		while(temp != null){
 			if(temp.song.getname().equals(s)){
-				return temp.song.getname();
+				return "Song Found!!";
 			}else{
 				temp = temp.next;
 			}
 		}
-		return null;
+		
+		return "Song not Found";
 	}
 	
 	
 	public static void main(String args[]){
 		Musicplayer player1 = new Musicplayer();
+		Scanner sc = new Scanner(System.in);
+
+		int value;
+		do{
+			System.out.println("1.Add\n2.Play\n3.Remove\n4.Next\n5.Previous\n6.Shuffle\n7.Search\n8.Show Playlist\n9.Exit");
+			System.out.println("Enter Your Choice:");
+			value = sc.nextInt();
+			sc.nextLine();
+			switch(value){
+				case 1:{
+					System.out.println("Enter the Song:" );
+					String n = sc.nextLine();
+					System.out.println("Enter the Artist:");
+					String a = sc.nextLine();
+					System.out.println("Enter the Duration:");
+					int d = sc.nextInt();
+					sc.nextLine();
+					Song s = new Song(n,a,d);
+					player1.append(s);
+					break;
+				}
+				case 2:
+					player1.playCurrent();
+					break;
+				case 3:
+					System.out.println("Removing...");
+					player1.removeCurrent();
+					break;
+				case 4:
+					player1.next();
+					break;
+				case 5:
+					player1.previous();
+					break;
+				case 6:
+					System.out.println("Shuffling...");
+					player1.shuffle();
+					break;
+				case 7:
+					{
+						System.out.println("Enter The Song:");
+						String s = sc.nextLine();
+						System.out.println(player1.searchSong(s));
+					}
+					break;	
+				case 8:
+						System.out.println("Your Playlist:\n");
+						player1.showPlaylist();		
+						break;	
+				case 9:
+						System.out.println("Exiting...");
+						break;
+				default:
+					System.out.println("Invalid Input");		
+
+			}
+			System.out.print("\n");
+	
+		}while(value != 9);
+
 		
-		Song s1 = new Song("Believer","Imagine Dragons",120);
+
+
+
+		/*Song s1 = new Song("Believer","Imagine Dragons",120);
 		Song s2 = new Song("Sunflower","Post Malone",116);
 		Song s3 = new Song("Monster", "Skillet", 112);
 
@@ -188,8 +254,7 @@ public class Musicplayer{
 		player1.shuffle();
 		player1.playCurrent();
 		System.out.println("Song Found:\n" + player1.searchm("Believer")+"\n");
-
+		*/
 		
 			}
-
-		}
+}

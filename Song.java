@@ -13,7 +13,7 @@ public class Song{
 		return name;
 	}	
 	public void display(){
-		System.out.println("\n"+name + " -- " + artist + " -- " + duration + " sec\n");
+		System.out.println(name + " -- " + artist + " -- " + duration + " sec"+"\n");
 		
 		}
 
