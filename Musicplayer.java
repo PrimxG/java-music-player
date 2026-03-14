@@ -5,6 +5,7 @@ public class Musicplayer{
 	private Node tail;
 	private Node current;
 	private int length;
+	private int mode;
 		
 
 	private class Node{
@@ -47,8 +48,14 @@ public class Musicplayer{
 	public void showPlaylist(){
 		Node temp = head;
 		while(temp != null){
+			
 			temp.song.display();
+			if(current == temp){
+				System.out.print("    <--Playing");
+			}
+			System.out.println();	
 			temp = temp.next;
+			
 			}
 		System.out.print("(Add more!)\n");
 
@@ -58,19 +65,38 @@ public class Musicplayer{
 		
 
 	public void next(){
-		if(current != null && current.next != null){
+		if(current == null) return;
+		if(mode == 1){
+			return;
+		}
+		if(current.next != null){
 			current = current.next;
 			}
 		
-		}
-
+		
+		else{
+			if(mode == 2){
+			current = head;
+		}}
+	}
 	//Previous Function
 	
 	
 	public void previous(){
-		if(current != null && current.prev != null){
+		if(current == null) return;
+		if(mode == 1) {
+			return;
+		}	
+		if(current.prev != null){
 			current = current.prev;
 			}
+			else{
+				if(mode == 2){
+					current = tail;
+				}
+			}
+		
+		
 		}
 
 
@@ -169,7 +195,11 @@ public class Musicplayer{
 		
 		return "Song not Found";
 	}
+
 	
+	
+
+
 	
 	public static void main(String args[]){
 		Musicplayer player1 = new Musicplayer();
@@ -177,7 +207,7 @@ public class Musicplayer{
 
 		int value;
 		do{
-			System.out.println("1.Add\n2.Play\n3.Remove\n4.Next\n5.Previous\n6.Shuffle\n7.Search\n8.Show Playlist\n9.Exit");
+			System.out.println("1.Add\n2.Play\n3.Remove\n4.Next\n5.Previous\n6.Shuffle\n7.Search\n8.Show Playlist\n9.Modes\n10.Exit");
 			System.out.println("Enter Your Choice:");
 			value = sc.nextInt();
 			sc.nextLine();
@@ -221,8 +251,19 @@ public class Musicplayer{
 				case 8:
 						System.out.println("Your Playlist:\n");
 						player1.showPlaylist();		
-						break;	
-				case 9:
+						break;
+						
+				case 9:{
+						System.out.println("\n1.Loop Song\n2.Loop Playlist\n3.Normal");
+						
+						int m = sc.nextInt();
+						if(m >=1 && m <=3){
+							player1.mode = m;
+						}	
+					}
+					break;
+				case 10:
+
 						System.out.println("Exiting...");
 						break;
 				default:
@@ -231,7 +272,7 @@ public class Musicplayer{
 			}
 			System.out.print("\n");
 	
-		}while(value != 9);
+		}while(value != 10);
 
 		
 
