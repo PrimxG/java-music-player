@@ -1,29 +1,31 @@
-# Java Music Player (DSA Project)
+# Java Music Player
 
 ## Overview
 This is a console-based music player built in **Java** using a **Doubly Linked List** to manage a playlist.
 
-Each song is stored as a node in the linked list, allowing efficient navigation **forward and backward** between songs.
+Each song is stored as a node, enabling efficient navigation both **forward and backward**.
 
-This project demonstrates how **Data Structures and Algorithms (DSA)** concepts can be applied to build a real-world style application such as a music playlist system.
+The project demonstrates how **Data Structures and Algorithms (DSA)** concepts can be applied to build a real-world application such as a music playlist system, along with a structured **modular CLI design**.
+
+The project focuses on clean structure, modular design, and practical implementation of core data structures.
 
 ---
 
 ## Features
 
 - Add songs to the playlist
-- Play the current song
-- Move to the next song
-- Move to the previous song
 - Remove the current song
-- Shuffle the playlist
+- Play the current song
+- Navigate to next and previous songs
+- Shuffle playback
 - Search songs by name
-- Display the entire playlist
+- Display the full playlist
 - Highlight the currently playing song
 - Playback modes:
-  - **Loop Song** – repeat the current song
-  - **Loop Playlist** – restart playlist after the last song
-  - **Normal Mode** – stop at the end of the playlist
+  - **Normal Mode**
+  - **Loop Song**
+  - **Loop Playlist**
+- Structured **modular menu system**
 - Interactive **command-line interface (CLI)**
 
 ---
@@ -31,135 +33,125 @@ This project demonstrates how **Data Structures and Algorithms (DSA)** concepts 
 ## Data Structures Used
 
 ### Doubly Linked List
-The playlist is implemented using a **doubly linked list**.
+The playlist is implemented using a **doubly linked list**, where each node contains:
+- Song data
+- Reference to the next node
+- Reference to the previous node
 
-Each node contains:
-- Song information
-- Reference to the **next song**
-- Reference to the **previous song**
-
-This allows efficient navigation in both directions.
+This allows efficient bidirectional traversal.
 
 ### Traversal
-Traversal is used to:
+Used to:
 - Display the playlist
 - Navigate between songs
 
 ### Linear Search
-Used for searching songs by name.
+Used to search songs by name.
 
 ### Random Index Selection
-Used in the **shuffle feature** to jump to a random song.
+Used in the shuffle feature to jump to a random song.
 
 ---
 
 ## Playback Modes
 
-The player supports three playback modes:
-
 | Mode | Behavior |
-|-----|------|
-| Loop Song | Repeats the currently playing song |
-| Loop Playlist | After the last song, playback returns to the first song |
-| Normal | Playback stops at the last song |
+|------|---------|
+| Normal | Stops at the last song |
+| Loop Song | Repeats the current song |
+| Loop Playlist | Loops back to the first song after the last |
 
 ---
 
-## Menu
+## Menu Structure
 
-Add
+### Main Menu
+- Playlist
+- Player Controls
+- Modes
+- Exit
 
-Play
+### Playlist Menu
+- Add Song
+- Delete Song
+- Display Playlist
+- Search Song
 
-Remove
+### Player Controls
+- Play
+- Next
+- Previous
 
-Next
-
-Previous
-
-Shuffle
-
-Search
-
-Show Playlist
-
-Modes
-
-Exit
-
-yaml
-Copy code
+### Modes
+- Normal
+- Loop Song
+- Loop Playlist
+- Shuffle
 
 ---
 
-## Example Playlist Output
+## Example Output
+
 
 Believer - Imagine Dragons
 Sunflower - Post Malone <-- Playing
 Monster - Skillet
 
-yaml
-Copy code
 
 ---
 
 ## How to Run
 
-### Compile the program
+### Compile
 
 javac *.java
 
-shell
-Copy code
 
-### Run the program
+### Run
 
 java Musicplayer
 
-yaml
-Copy code
 
 ---
 
 ## Project Structure
 
+
 Musicplayer.java
 Song.java
 
-markdown
-Copy code
 
 ### Musicplayer
 Handles:
 - Playlist management
-- Navigation between songs
+- Navigation
 - Playback modes
-- CLI menu system
+- Modular CLI menus
 
 ### Song
-Stores song information such as:
+Stores:
 - Song name
 - Artist
 - Duration
 
 ---
 
-## Learning Purpose
+## Learning Objectives
 
-This project was built to practice and demonstrate:
+This project demonstrates:
 
 - **Doubly Linked Lists**
 - **Pointer manipulation**
 - **Object-Oriented Programming (OOP)**
-- **Command Line Interface (CLI) application design**
-- Applying **Data Structures in practical programs**
+- **CLI-based application design**
+- Applying **DSA in real-world scenarios**
 
 ---
 
-## Possible Future Improvements
+## Future Improvements
 
-- Save and load playlists from files
-- Real audio playback support
-- Playlist sorting
-- Queue system
-- Graphical User Interface (GUI)
+- Play song directly by name
+- Display current song and playlist stats
+- Save/load playlists from files
+- Real audio playback (MP3 support)
+- GUI-based music player
