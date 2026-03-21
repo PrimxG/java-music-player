@@ -180,29 +180,69 @@ public class Musicplayer{
 	}
 	//Search Function
 
-	public String searchSong(String s){
-		if(head == null) return "Playlist Empty!";
+	public Node searchSong(String s){
+		if(head == null) return null;
 		Node temp = head;
 		while(temp != null){
-			if(temp.song.getname().equals(s)){
-				return "Song Found!!";
+			if(temp.song.getname().equalsIgnoreCase(s)){
+				return temp;
 			}else{
 				temp = temp.next;
 			}
 		}
 		
-		return "Song not Found";
+		return null;
 	}
+	
+	//Play Searched Song
+	public void playSearchSong(String s){
+		Node temp = searchSong(s);
+		if(temp != null){
+			current = temp;
+		}
+	}	
 
-/*                                                                   MAIN MENU START																				           */
+/*                                                                   MAIN MENU BRANCH START																				           */
 
+// HEADER OF PLAYER
+public void showPlayerInfo(){
+		System.out.println("---------------------");
+		System.out.print("Now Playing : ");
+		if(current == null){
+			System.out.println("None ");
+		}
+		else{
+			System.out.println(current.song.getname());
+		}
+		System.out.print("Mode : ");
+		if(mode == 0) System.out.println("Normal");
+		else if(mode == 1) System.out.println("Looping Song");
+		else if(mode == 2) System.out.println("Looping Playlist");
+		System.out.println("Total Songs : "+ length);
+		System.out.print("Current : ");
+		if(current == null){
+			System.out.println("None");
+		}else{
+		int pos = 1;
+		Node temp = head;
+		while(temp != current ){
+			temp = temp.next;
+			pos++;
+		}
+		System.out.println(pos+"/"+length);
+		}
+		System.out.println("---------------------");
 
+}
+
+// MAIN MENU
 public static void mainmenu(){
 	Musicplayer player1 = new Musicplayer();
 		Scanner sc = new Scanner(System.in);
 
 		int value;
 		do{
+			player1.showPlayerInfo();
 			System.out.println("\n--- MAIN MENU ---");
 			System.out.println("1. Playlist\n2. Player Controls\n3. Modes\n4. Exit");
 			value = sc.nextInt();
@@ -222,6 +262,7 @@ public static void mainmenu(){
 public static void playlist(Scanner sc, Musicplayer player1){
 	int choice;	
 	do{
+		player1.showPlayerInfo();
 			System.out.println("--- PLAYLIST MENU ---");
 			System.out.println("1. Add Song");
 			System.out.println("2. Delete Song");
@@ -256,7 +297,20 @@ public static void playlist(Scanner sc, Musicplayer player1){
 					{
 						System.out.println("Enter The Song:");
 						String s = sc.nextLine();
-						System.out.println(player1.searchSong(s));
+						Node foundNode = player1.searchSong(s);
+						if(foundNode != null){
+							System.out.println("Song Found!!");
+							System.out.println("Do you want to play this song?");
+							System.out.println("1.Yes");
+							System.out.println("2.No");
+						int a = sc.nextInt();
+						sc.nextLine();
+						if(a == 1){
+							player1.playSearchSong(s);
+						}
+					} else {
+						System.out.println("Song not Found");
+						}
 					}
 					break;		
 				case 5:
@@ -270,12 +324,13 @@ public static void playlist(Scanner sc, Musicplayer player1){
 	}	
 
 
-//Player Options Method
+//Player Controls Method
 
 	public static void playeroptions(Scanner sc, Musicplayer player1){
 		
     int choice;
     do {
+		player1.showPlayerInfo();
         System.out.println("\n--- PLAYER CONTROLS ---");
         System.out.println("1. Play");
         System.out.println("2. Next");
@@ -307,6 +362,7 @@ public static void playlist(Scanner sc, Musicplayer player1){
 	public static void modeMenu(Scanner sc , Musicplayer player1) {
     int choice;
     do {
+		player1.showPlayerInfo();
         System.out.println("\n--- MODES ---");
         System.out.println("1. Normal");
         System.out.println("2. Loop Song");
