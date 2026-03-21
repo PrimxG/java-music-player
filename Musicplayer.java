@@ -71,14 +71,15 @@ public class Musicplayer{
 		}
 		if(current.next != null){
 			current = current.next;
-			}
-		
-		
+		}
 		else{
 			if(mode == 2){
-			current = head;
+				current = head;
+			}
+			else if(mode == 0){
+				System.out.println("End of playlist");
+			}
 		}
-	}
 	}
 	//Previous Function
 	
@@ -90,15 +91,16 @@ public class Musicplayer{
 		}	
 		if(current.prev != null){
 			current = current.prev;
-			}
-			else{
-				if(mode == 2){
-					current = tail;
-				}
-			}
-		
-		
 		}
+		else{
+			if(mode == 2){
+				current = tail;
+			}
+			else if(mode == 0){
+				System.out.println("Start of playlist");
+			}
+		}
+	}
 
 
 	//Shows the current song 
@@ -162,25 +164,19 @@ public class Musicplayer{
 	public void shuffle(){
 		if(length <= 1) return;
 		if(head == null) return;
-		Random rand  = new Random();
-		int newindex = rand.nextInt(length);
-		Node temp = head;
-		for(int i = 0 ; i < newindex ; i++){
-			temp = temp.next;
-			
-		}
-		while(temp == current){
+		Random rand = new Random();
+		Node temp;
+		int newindex;
+		
+		do {
 			newindex = rand.nextInt(length);
 			temp = head;
-			for(int i = 0 ; i < newindex ; i++){
-			temp = temp.next;
-		}
+			for(int i = 0; i < newindex; i++){
+				temp = temp.next;
+			}
+		} while(temp == current);
 		
-		}
 		current = temp;
-		
-		
-		
 	}
 	//Search Function
 
