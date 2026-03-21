@@ -18,9 +18,11 @@ The project focuses on clean structure, modular design, and practical implementa
 - Play the current song
 - Navigate to next and previous songs
 - Shuffle playback
-- Search songs by name
+- Search songs by name (**case-insensitive**)
+- Play searched song directly from results
 - Display the full playlist
 - Highlight the currently playing song
+- Display total songs and current position (e.g., `2/5`)
 - Playback modes:
   - **Normal Mode**
   - **Loop Song**
@@ -150,8 +152,8 @@ This project demonstrates:
 
 ## Future Improvements
 
-- Play song directly by name
-- Display current song and playlist stats
-- Save/load playlists from files
+- Save and load playlists from files
 - Real audio playback (MP3 support)
-- GUI-based music player
+- Playlist sorting
+- Queue system (next up songs)
+- Graphical User Interface (GUI)
