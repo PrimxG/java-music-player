@@ -1,5 +1,10 @@
 import java.util.Random;
 import java.util.Scanner;
+//Importing the Linked List and Queue Classes for efficient work
+import java.util.LinkedList;
+import java.util.Queue;
+
+
 public class Musicplayer{
 	private Node head;
 	private Node tail;
@@ -66,6 +71,11 @@ public class Musicplayer{
 
 	public void next(){
 		if(current == null) return;
+
+		if(playFromQueue()){
+    	    return;
+	    }
+
 		if(mode == 1){
 			return;
 		}
@@ -201,6 +211,46 @@ public class Musicplayer{
 			current = temp;
 		}
 	}	
+/*																	QUEUE BRANCH STARTS																											   */
+	private Queue<Song> queue = new LinkedList<>();
+	
+	//Add song to queue
+
+	public void addToQueue(Song song){
+		queue.offer(song);
+	}
+
+	//Show Queue
+	public void showQueue(){
+		if(queue.isEmpty()){
+			System.out.println("Queue is Empty");
+			return;
+		}
+		System.out.println("Queue: ");
+		for(Song s : queue){
+			System.out.println(s.getname());
+		}
+
+	}	
+
+	//Play from queue
+
+	public boolean playFromQueue(){
+		if(queue.isEmpty()) return false;
+
+		Song nextsong = queue.poll();
+		Node temp = searchSong(nextsong.getname());
+
+		if(temp != null){
+			current = temp;
+		}
+		return true;
+	}
+
+
+/*																	QUEUE BRANCH ENDS																											   */
+
+
 
 /*                                                                   MAIN MENU BRANCH START																				           */
 
@@ -335,7 +385,9 @@ public static void playlist(Scanner sc, Musicplayer player1){
         System.out.println("1. Play");
         System.out.println("2. Next");
         System.out.println("3. Previous");
-        System.out.println("4. Back");
+        System.out.println("4. Add to Queue");
+        System.out.println("5. Show Queue");
+        System.out.println("6. Back");
 
         choice = sc.nextInt();
 
@@ -347,12 +399,29 @@ public static void playlist(Scanner sc, Musicplayer player1){
 					break;
             case 3: player1.previous(); 
 					break;
-			case 4:
+			case 4: 
+					System.out.println("Enter song to add to queue:");
+    				sc.nextLine();
+    				String name = sc.nextLine();
+          			Node temp = player1.searchSong(name);
+
+          			if(temp != null){
+          			    player1.addToQueue(temp.song);
+          			    System.out.println("Added to queue");
+          			} else {
+          			    System.out.println("Song not found");
+          			}
+          			break;
+
+			case 5:
+					player1.showQueue();
+					break;
+			case 6:
 					break;		
 			default:
 				System.out.println("Invalid Choice!");		
         }
-    } while(choice != 4);
+    } while(choice != 6);
 
 	}
 
