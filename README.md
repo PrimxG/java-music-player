@@ -27,6 +27,10 @@ The project focuses on clean structure, modular design, and practical implementa
   - **Normal Mode**
   - **Loop Song**
   - **Loop Playlist**
+- Queue system:
+  - Add songs to queue
+  - View queued songs
+  - Queue is prioritized during playback (plays before playlist)
 - Structured **modular menu system**
 - Interactive **command-line interface (CLI)**
 
@@ -35,12 +39,10 @@ The project focuses on clean structure, modular design, and practical implementa
 ## Data Structures Used
 
 ### Doubly Linked List
-The playlist is implemented using a **doubly linked list**, where each node contains:
-- Song data
-- Reference to the next node
-- Reference to the previous node
+Used to manage the main playlist and enable forward/backward navigation.
 
-This allows efficient bidirectional traversal.
+### Queue (LinkedList)
+Used to manage **upcoming songs** (FIFO order).
 
 ### Traversal
 Used to:
@@ -51,7 +53,7 @@ Used to:
 Used to search songs by name.
 
 ### Random Index Selection
-Used in the shuffle feature to jump to a random song.
+Used in the shuffle feature.
 
 ---
 
@@ -83,6 +85,8 @@ Used in the shuffle feature to jump to a random song.
 - Play
 - Next
 - Previous
+- Add to Queue
+- Show Queue
 
 ### Modes
 - Normal
@@ -94,10 +98,13 @@ Used in the shuffle feature to jump to a random song.
 
 ## Example Output
 
+Now Playing : Believer
+Mode : Normal
+Total Songs : 5
+Current : 2/5
+Queue: 2 song(s)
 
-Believer - Imagine Dragons
 Sunflower - Post Malone <-- Playing
-Monster - Skillet
 
 
 ---
@@ -128,6 +135,7 @@ Handles:
 - Playlist management
 - Navigation
 - Playback modes
+- Queue system
 - Modular CLI menus
 
 ### Song
@@ -143,6 +151,7 @@ Stores:
 This project demonstrates:
 
 - **Doubly Linked Lists**
+- **Queue (FIFO)**
 - **Pointer manipulation**
 - **Object-Oriented Programming (OOP)**
 - **CLI-based application design**
@@ -152,8 +161,8 @@ This project demonstrates:
 
 ## Future Improvements
 
+- Add history feature using Stack
 - Save and load playlists from files
 - Real audio playback (MP3 support)
 - Playlist sorting
-- Queue system (next up songs)
 - Graphical User Interface (GUI)
